@@ -6,7 +6,9 @@ const searchbtn = document.querySelector('.search button')
 const weatherIcon = document.querySelector('.weather-icon')
 
 async function checkWeather(city) {
-  const response = await fetch(apiUrl + city + `&appid=${apiKey}`)
+  const trimmedInput = city.trim()
+
+  const response = await fetch(apiUrl + trimmedInput + `&appid=${apiKey}`)
 
   if (response.status == 404) {
     document.querySelector('.error').style.display = 'block'
@@ -31,7 +33,7 @@ async function checkWeather(city) {
       weatherIcon.src = 'images/drizzle.png'
     } else if (data.weather[0].main == 'Mist') {
       weatherIcon.src = 'images/mist.png'
-    } else if (data.weather[0].main == "Snow"){
+    } else if (data.weather[0].main == 'Snow') {
       weatherIcon.src = 'images/snow.png'
     }
 
